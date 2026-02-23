@@ -1,5 +1,2 @@
-Host server01
-    HostName 98.98.98.98
-    User ubuntu
-    IdentityFile ~/.ssh/school
-    PasswordAuthentication no
+#!/usr/bin/env bash
+ssh-keygen -b 4096 -N "betty" -f ./school
