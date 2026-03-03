@@ -6,13 +6,12 @@ sudo apt-get -y install nginx ufw
 sudo ufw allow 'Nginx HTTP'
 echo "Holberton School" | sudo tee /var/www/html/index.html > /dev/null
 
-# Add redirect rule for /redirect_me
-sudo sed -i '/server_name _;/a \\tlocation /redirect_me {\n\t\treturn 301 https://www.wilsonn.vercel.app;\n\t}' /etc/nginx/sites-enabled/default
-
-# Create custom 404 page with required string
+# Create custom 404 page
 echo "Ceci n'est pas une page" | sudo tee /var/www/html/404.html > /dev/null
 
-# Add custom 404 error page directive
-sudo sed -i '/server_name _;/a \\terror_page 404 /404.html;' /etc/nginx/sites-enabled/default
+# Add redirect rule for /redirect_me and custom 404 error page directive
+# Using a more robust sed pattern that handles optional whitespace
+sed_cmd="s|server_name _;|server_name _;\n\trewrite ^/redirect_me https://www.youtube.com/ permanent;\n\terror_page 404 /404.html;|"
+sudo sed -i "$sed_cmd" /etc/nginx/sites-available/default
 
 sudo service nginx restart
