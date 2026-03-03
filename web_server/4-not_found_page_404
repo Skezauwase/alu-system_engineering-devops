@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# Configures Nginx with a custom 404 page containing "Ceci n'est pas une page"
+
+sudo apt-get update
+sudo apt-get -y install nginx
+sudo ufw allow 'Nginx HTTP'
+echo "Holberton School" | sudo tee /var/www/html/index.html > /dev/null
+
+# Add redirect rule for /redirect_me
+sudo sed -i '/server_name _;/a \\tlocation /redirect_me {\n\t\treturn 301 https://www.wilsonn.vercel.app;\n\t}' /etc/nginx/sites-enabled/default
+
+# Create custom 404 page
+echo "Ceci n'est pas une page" | sudo tee /var/www/html/404.html > /dev/null
+
+# Add custom 404 error page directive
+sudo sed -i '/server_name _;/a \\terror_page 404 /404.html;' /etc/nginx/sites-enabled/default
+
+sudo service nginx restart
