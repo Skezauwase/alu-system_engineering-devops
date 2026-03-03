@@ -12,5 +12,18 @@ SERVER_IP="$2"
 USERNAME="$3"
 SSH_KEY="$4"
 
-# Transfer the file to the server's home directory, disable strict host key checking
+# Check if the file exists locally
+if [ ! -f "$FILE_PATH" ]; then
+    echo "Error: File '$FILE_PATH' does not exist."
+    exit 1
+fi
+
+# Transfer the file to the server's home directory
 scp -i "$SSH_KEY" -o StrictHostKeyChecking=no "$FILE_PATH" "$USERNAME@$SERVER_IP:~/"
+# Check if scp was successful
+if [ "$?" -ne 0 ]; then
+    echo "File transfer failed."
+    exit 1
+fi
+
+echo "File transferred successfully to $USERNAME@$SERVER_IP:~/"
