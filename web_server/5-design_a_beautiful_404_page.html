@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>404 - Page Not Found</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Anton&family=Open+Sans:wght@400;700&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background-color: #0a0a1a;
+        font-family: "Open Sans", sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        color: #ccc;
+        overflow: hidden;
+        position: relative;
+      }
+
+      /* Animated gradient background */
+      body::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle at 20% 50%, rgba(0, 119, 255, 0.08) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 20%, rgba(138, 43, 226, 0.08) 0%, transparent 50%),
+                    radial-gradient(circle at 50% 80%, rgba(0, 200, 150, 0.06) 0%, transparent 50%);
+        animation: drift 15s ease-in-out infinite alternate;
+      }
+
+      @keyframes drift {
+        0% { transform: translate(0, 0) rotate(0deg); }
+        100% { transform: translate(-30px, -20px) rotate(3deg); }
+      }
+
+      /* Floating particles */
+      .particles {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+      }
+
+      .particle {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: rgba(0, 119, 255, 0.4);
+        border-radius: 50%;
+        animation: float linear infinite;
+      }
+
+      .particle:nth-child(1) { left: 10%; animation-duration: 8s; animation-delay: 0s; }
+      .particle:nth-child(2) { left: 25%; animation-duration: 12s; animation-delay: 2s; background: rgba(138, 43, 226, 0.4); }
+      .particle:nth-child(3) { left: 40%; animation-duration: 10s; animation-delay: 4s; }
+      .particle:nth-child(4) { left: 55%; animation-duration: 14s; animation-delay: 1s; background: rgba(0, 200, 150, 0.4); }
+      .particle:nth-child(5) { left: 70%; animation-duration: 9s; animation-delay: 3s; }
+      .particle:nth-child(6) { left: 85%; animation-duration: 11s; animation-delay: 5s; background: rgba(138, 43, 226, 0.4); }
+      .particle:nth-child(7) { left: 15%; animation-duration: 13s; animation-delay: 6s; background: rgba(0, 200, 150, 0.3); }
+      .particle:nth-child(8) { left: 60%; animation-duration: 7s; animation-delay: 2s; }
+
+      @keyframes float {
+        0% { transform: translateY(100vh) scale(0); opacity: 0; }
+        10% { opacity: 1; }
+        90% { opacity: 1; }
+        100% { transform: translateY(-100vh) scale(1.5); opacity: 0; }
+      }
+
+      /* Background text */
+      .background-text {
+        position: absolute;
+        font-family: "Anton", sans-serif;
+        font-size: 20vw;
+        color: rgba(255, 255, 255, 0.015);
+        white-space: nowrap;
+        pointer-events: none;
+        user-select: none;
+        letter-spacing: 0.05em;
+      }
+
+      main {
+        text-align: center;
+        padding: 2rem;
+        max-width: 650px;
+        z-index: 1;
+        animation: fadeIn 1s ease-out;
+      }
+
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      .error-code {
+        font-family: "Anton", sans-serif;
+        font-size: 8rem;
+        line-height: 1;
+        background: linear-gradient(135deg, #0077ff 0%, #8a2be2 50%, #00c896 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 0.5rem;
+        animation: glitch 3s ease-in-out infinite;
+        position: relative;
+      }
+
+      @keyframes glitch {
+        0%, 90%, 100% { transform: translate(0); }
+        92% { transform: translate(-3px, 2px); }
+        94% { transform: translate(3px, -2px); }
+        96% { transform: translate(-2px, -1px); }
+        98% { transform: translate(2px, 1px); }
+      }
+
+      .subtitle {
+        font-family: "Anton", sans-serif;
+        text-transform: uppercase;
+        font-size: 1.5rem;
+        letter-spacing: 0.3em;
+        color: rgba(255, 255, 255, 0.6);
+        margin-bottom: 2rem;
+      }
+
+      .french-quote {
+        font-style: italic;
+        font-size: 1.3rem;
+        color: rgba(138, 43, 226, 0.8);
+        margin-bottom: 2rem;
+        padding: 1rem 2rem;
+        border-left: 3px solid rgba(138, 43, 226, 0.4);
+        text-align: left;
+        background: rgba(138, 43, 226, 0.05);
+        border-radius: 0 8px 8px 0;
+      }
+
+      .description {
+        line-height: 1.8;
+        margin-bottom: 2rem;
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 0.95rem;
+      }
+
+      .error-list {
+        text-align: left;
+        display: inline-block;
+        margin-bottom: 2.5rem;
+        list-style: none;
+      }
+
+      .error-list li {
+        padding: 0.5rem 0;
+        color: rgba(255, 255, 255, 0.45);
+        position: relative;
+        padding-left: 1.5rem;
+        font-size: 0.9rem;
+      }
+
+      .error-list li::before {
+        content: "→";
+        position: absolute;
+        left: 0;
+        color: #0077ff;
+      }
+
+      .home-link {
+        display: inline-block;
+        font-family: "Anton", sans-serif;
+        text-transform: uppercase;
+        font-size: 1rem;
+        letter-spacing: 0.15em;
+        color: #fff;
+        text-decoration: none;
+        padding: 0.8rem 2.5rem;
+        border-radius: 50px;
+        background: linear-gradient(135deg, #0077ff, #8a2be2);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .home-link::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+        transition: left 0.5s ease;
+      }
+
+      .home-link:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(0, 119, 255, 0.3);
+      }
+
+      .home-link:hover::before {
+        left: 100%;
+      }
+
+      /* Decorative line */
+      .divider {
+        width: 60px;
+        height: 3px;
+        background: linear-gradient(90deg, #0077ff, #8a2be2);
+        margin: 0 auto 2rem;
+        border-radius: 2px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="particles">
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+    </div>
+    <div class="background-text">404</div>
+    <main>
+      <div class="error-code">404</div>
+      <div class="subtitle">Page Not Found</div>
+      <div class="divider"></div>
+      <div class="french-quote">Ceci n'est pas une page</div>
+      <p class="description">
+        The page you're looking for has drifted into the void.
+        Let's get you back on track.
+      </p>
+      <ul class="error-list">
+        <li>The link may be broken or outdated</li>
+        <li>This page may have never existed</li>
+        <li>The content may have been moved elsewhere</li>
+      </ul>
+      <a href="/" class="home-link">Return Home</a>
+    </main>
+  </body>
+</html>
