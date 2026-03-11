@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+!/usr/bin/env bash
 # Troubleshoots and fixes the 404 page configuration
 
 echo "=== Checking 404.html file ==="
